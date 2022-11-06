@@ -5,6 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="77104583-3a3c-48be-922e-421cb2237c67" name="Changes" comment="pusher and thread cicle sender">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Receiver.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Receiver.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -54,7 +55,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1667736429563</updated>
-      <workItem from="1667736431049" duration="3605000" />
+      <workItem from="1667736431049" duration="7414000" />
     </task>
     <task id="LOCAL-00001" summary="pusher and thread cicle sender">
       <created>1667739397196</created>
