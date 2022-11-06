@@ -1,15 +1,22 @@
 import java.io.*;
+import java.net.ServerSocket;
 import java.net.Socket;
 import java.util.Scanner;
 
 
 public class PushFileThread extends Thread {
 
-    private final Socket clientSocket;
+    private Socket clientSocket;
+    private ServerSocket serverSocket;
     private byte[] Buffer;
 
-    public PushFileThread(Socket socket) {
-        this.clientSocket = socket;
+    public PushFileThread(ServerSocket serverS) {
+        try {
+            this.serverSocket= serverS;
+            this.clientSocket = serverSocket.accept();
+
+        } catch (IOException e) {e.printStackTrace();}
+
 
     }
 
@@ -28,9 +35,12 @@ public class PushFileThread extends Thread {
 
     private void sendFile() {
         try {
-            DataOutputStream dataOutputStream = new DataOutputStream(this.clientSocket.getOutputStream());
+            Socket sendSocket=this.serverSocket.accept();
+            DataOutputStream dataOutputStream = new DataOutputStream(sendSocket.getOutputStream());
             dataOutputStream.write(this.Buffer);
             dataOutputStream.flush();
+            sendSocket.close();
+
         } catch (IOException e) {
             System.out.println("errore SendFile");
         }
@@ -47,6 +57,8 @@ public class PushFileThread extends Thread {
             PrintWriter printWriter = new PrintWriter(bufferedWriter, true);
 
             printWriter.println(nome);
+
+            this.clientSocket.close();
         } catch (IOException e) {
             System.out.println("errore sendNomeFile");
             e.printStackTrace();
@@ -76,27 +88,30 @@ public class PushFileThread extends Thread {
                 System.out.println("file non presente");
                 continue;
             }
-
+            sendNomeFile(nomeFile);
             getFile(fileInputStream);
+
             try {
-                Thread.sleep(1000);
+                Thread.sleep(500);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
             sendFile();
             try {
-                Thread.sleep(1000);
+                Thread.sleep(500);
             } catch (InterruptedException e) {
                 e.printStackTrace();}
 
-            sendNomeFile(nomeFile);
+
 
             try {
-                Thread.sleep(1000);
+                Thread.sleep(500);
+
             } catch (InterruptedException e) {
                 e.printStackTrace();
 
             }
+
 
         }
 

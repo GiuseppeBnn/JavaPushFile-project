@@ -4,18 +4,24 @@ import java.net.Socket;
 
 public class Pusher{
     public static void main(String[] args) {
-        ServerSocket serverSocket;
-        Socket clientSocket;
-        Thread sendRequesThread;
         try {
-            serverSocket=new ServerSocket(6161);
-            clientSocket = serverSocket.accept();
-            sendRequesThread=new Thread(new PushFileThread(clientSocket));
+            ServerSocket serverSocket=new ServerSocket(6060);
+
+
+        Thread sendRequesThread;
+        while(true) {
+
+            sendRequesThread = new Thread(new PushFileThread(serverSocket));
             sendRequesThread.start();
+
+            try {
+                Thread.currentThread().join();
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+                System.exit(1);
+            }
+        }
         } catch (IOException e) {e.printStackTrace();}
-
-
-
 
 
 

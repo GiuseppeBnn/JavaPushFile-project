@@ -6,39 +6,47 @@ import java.net.UnknownHostException;
 
 public class Receiver {
 
-
     private static String recvStringFromSocket(Socket socket){
         try {
             InputStreamReader inputStreamReader=new InputStreamReader(socket.getInputStream());
             BufferedReader bufferedReader=new BufferedReader(inputStreamReader);
             String stringa=bufferedReader.readLine();
             return stringa;
-        } catch (IOException e) {System.out.println("errore recvStringFromScoket");return null;}
+        } catch (IOException e) {System.out.println("errore recvStringFromSocket");return null;}
     }
 
 
     public static void main(String[] args){
-        new File("FileRicevuti").mkdir();
+
         InetAddress pusherAddress;
+        if(!(new File("FileRicevuti").isDirectory())){
+            new File("FileRicevuti").mkdir();
+        }
+
         try {
-            pusherAddress= InetAddress.getByName(args[0]);
-            Socket pusherSocket= new Socket(pusherAddress,6060);
+            pusherAddress= InetAddress.getByName("192.168.1.221");
+
             while(true) {
-                DataInputStream dataInputStream = new DataInputStream(pusherSocket.getInputStream());
-                BufferedInputStream bufferedInputStream = new BufferedInputStream(dataInputStream);
-                byte[] buffer=bufferedInputStream.readAllBytes();
-
+                Socket pusherSocket= new Socket(pusherAddress,6060);
                 String nome= recvStringFromSocket(pusherSocket);
+                System.out.println("sto ricevendo: "+nome );
+                pusherSocket.close();
+                Socket dataSocket=new Socket(pusherAddress,6060);
+
+                DataInputStream dataInputStream = new DataInputStream(dataSocket.getInputStream());
+                BufferedInputStream bufferedInputStream = new BufferedInputStream(dataInputStream);
+                FileOutputStream fileOutputStream=new FileOutputStream("./FileRicevuti/"+nome);
 
 
-                FileOutputStream fileOutputStream=new FileOutputStream("/FileRicevuti/"+nome);
-                fileOutputStream.write(buffer);
+                fileOutputStream.write(bufferedInputStream.readAllBytes());
                 fileOutputStream.close();
-
+                System.out.println("ricevuto "+nome);
+                dataSocket.close();
 
             }
         }catch (UnknownHostException e) {e.printStackTrace();
-        }catch (IOException e) {System.exit(2);}
+        }catch (IOException e) {
+            e.printStackTrace();System.exit(2);}
 
 
 

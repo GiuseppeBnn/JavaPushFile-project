@@ -4,8 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="77104583-3a3c-48be-922e-421cb2237c67" name="Changes" comment="pusher and thread cicle sender">
+    <list default="true" id="77104583-3a3c-48be-922e-421cb2237c67" name="Changes" comment="receiver">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/PushFileThread.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/PushFileThread.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Pusher.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Pusher.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Receiver.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Receiver.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -55,7 +57,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1667736429563</updated>
-      <workItem from="1667736431049" duration="7414000" />
+      <workItem from="1667736431049" duration="12931000" />
     </task>
     <task id="LOCAL-00001" summary="pusher and thread cicle sender">
       <created>1667739397196</created>
@@ -64,7 +66,14 @@
       <option name="project" value="LOCAL" />
       <updated>1667739397196</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="receiver">
+      <created>1667771764937</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1667771764937</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -83,6 +92,7 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="pusher and thread cicle sender" />
-    <option name="LAST_COMMIT_MESSAGE" value="pusher and thread cicle sender" />
+    <MESSAGE value="receiver" />
+    <option name="LAST_COMMIT_MESSAGE" value="receiver" />
   </component>
 </project>
